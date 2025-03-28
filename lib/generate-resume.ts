@@ -88,6 +88,6 @@ function createResumePrompt(resumeData: ResumeData): string {
     
     Format the resume in a professional manner suitable for the ${resumeData.selectedTemplate} template style.
     Ensure the resume is concise, well-structured, and highlights key achievements and skills.
-    Use a clear, professional tone that emphasizes the applicant's strengths and potential.
+    Use a clear, professional tone that emphasizes the applicant's strengths and potential.highly follow the teplte provided and do not provide in .md text based format.
   `
 }

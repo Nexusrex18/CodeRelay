@@ -86,5 +86,6 @@ function createCoverLetterPrompt(resumeData: ResumeData): string {
     body paragraphs highlighting relevant experience, and a strong closing paragraph.
     
     Format the cover letter in a professional manner suitable for the ${resumeData.selectedTemplate} template style.
+    instead of your default spaces to fill by own ,provide me with the proper cover letter adusting all the details provided in ${resumeData}.
   `
 }
