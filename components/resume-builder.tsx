@@ -66,30 +66,31 @@ export default function ResumeBuilder() {
 
   const handleGenerate = async () => {
     try {
-      setIsGenerating(true)
-
-      // Generate resume content
-      const resumeContent = await generateResume(resumeData)
-      setGeneratedResume(resumeContent)
-
-      // Generate cover letter content
-      const coverLetterContent = await generateCoverLetter(resumeData)
-      setGeneratedCoverLetter(coverLetterContent)
-
+      setIsGenerating(true);
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(resumeData),
+      });
+      if (!response.ok) throw new Error('Failed to generate content');
+      const { resume, coverLetter, error } = await response.json();
+      if (error) throw new Error(error);
+      setGeneratedResume(resume);
+      setGeneratedCoverLetter(coverLetter);
       toast({
         title: "Generation complete!",
         description: "Your resume and cover letter have been generated successfully.",
-      })
+      });
     } catch (error) {
       toast({
         title: "Generation failed",
-        description: "There was an error generating your documents. Please try again.",
+        description: error.message || "There was an error generating your documents. Please try again.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsGenerating(false)
+      setIsGenerating(false);
     }
-  }
+  };
 
   const handleDownload = (type: "pdf" | "docx") => {
     toast({

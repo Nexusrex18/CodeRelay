@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai"
 export async function generateCoverLetter(resumeData: ResumeData): Promise<string> {
   try {
     // Retrieve the API key from environment variables
-    const apiKey = process.env.GOOGLE_GEMINI_API_KEY
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_GEMINI_API_KEY
 
     if (!apiKey) {
       throw new Error("Google Gemini API key is not configured")
